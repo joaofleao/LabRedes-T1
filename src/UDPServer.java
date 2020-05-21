@@ -16,13 +16,18 @@ class UDPServer {
             jogo.questions();
             receivePacket();
             
+            
             while(true) { 
                   Question a = jogo.getRandomQuestion();
                   if (a==null) {
                         sendPacket("-1\n");
                         System.out.println("Game Over");
-                        break;
+                        jogo = new Game(true);
+                        jogo.questions();
+                        a = jogo.getRandomQuestion();
+                        receivePacket();
                   }
+                  
                   
                   sendPacket("4\n" +a.toString());
 
@@ -32,7 +37,6 @@ class UDPServer {
                   
                   if (resultado) {
                         sendPacket("4\nParabéns! Você acertou \nSua pontuação: " + jogo.getPlayer1Points() + "\nPerguntas certas seguidas: " + jogo.getPlayer1Fire() + "\n" + "Clique enter para continuar\n");
-                        
                         receivePacket();
                   }
                   else {
@@ -71,7 +75,22 @@ class UDPServer {
             // cria pacote com o dado, o endereço do server e porta do servidor
             DatagramPacket sendPacket = new DatagramPacket(dataGoing, dataGoing.length, IPAddress, port);
 
+            //serverSocket.setSoTimeout(1000);
+            boolean continueSending = true;
+            while (continueSending) {
+
+                  try {
+                        serverSocket.send(sendPacket);
+                        continueSending = false;
+                        
+                  } catch (SocketTimeoutException e) {
+                        System.out.println(e);
+                  }
+         
+            }
+
+
             //envia o pacote
-            serverSocket.send(sendPacket);
+            
       }
 }

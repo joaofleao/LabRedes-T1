@@ -5,38 +5,42 @@ import java.util.*;
 class UDPClient {
    public static void main(String args[]) throws Exception {
       //declaracao do socket cliente
-      DatagramSocket clientSocket = new DatagramSocket();
-
-      System.out.println("Olá, para começar pressione 'Enter'");
-      
-      Scanner keyboard = new Scanner(System.in);
-      keyboard.nextLine();
-
-      sendData("iniciar", clientSocket, InetAddress.getByName("localhost"));
-
-      while (true) {
-         String question = receiveData(clientSocket);
-         if(question.equals("")) {
-            System.out.println("As perguntas acabaram!, Obrigado por jogar!");
-            break;
-         }
-         System.out.println(question);
+      do {
+         System.out.println("Olá, para começar pressione 'Enter'");
          
-         System.out.println("Digite a letra da alternativa correta");
-         String toSend = keyboard.nextLine();
-         toSend = toSend.toLowerCase();
-         switch(toSend) {
-            case "a": toSend = "0"; break;
-            case "b": toSend = "1"; break;
-            case "c": toSend = "2"; break;
-         }
-         sendData(toSend, clientSocket, InetAddress.getByName("localhost"));
-
-         System.out.println(receiveData(clientSocket));
-
+         Scanner keyboard = new Scanner(System.in);
          keyboard.nextLine();
-         sendData("continuar", clientSocket, InetAddress.getByName("localhost"));
-      }
+
+         DatagramSocket clientSocket = new DatagramSocket();
+
+         sendData("iniciar", clientSocket, InetAddress.getByName("localhost"));
+
+         while (true) {
+            String question = receiveData(clientSocket);
+            if(question.equals("")) {
+               System.out.println("As perguntas acabaram!, Obrigado por jogar!");
+               break;
+            }
+            System.out.println(question);
+            
+            System.out.println("Digite a letra da alternativa correta");
+            String toSend = keyboard.nextLine();
+            toSend = toSend.toLowerCase();
+            switch(toSend) {
+               case "a": toSend = "0"; break;
+               case "b": toSend = "1"; break;
+               case "c": toSend = "2"; break;
+            }
+            sendData(toSend, clientSocket, InetAddress.getByName("localhost"));
+
+            System.out.println(receiveData(clientSocket));
+
+            keyboard.nextLine();
+            sendData("continuar", clientSocket, InetAddress.getByName("localhost"));
+         }
+         clientSocket.close();
+
+      } while(true);
 
    }
    public static String format(String text) throws IOException {

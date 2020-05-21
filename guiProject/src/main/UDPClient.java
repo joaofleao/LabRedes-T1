@@ -10,6 +10,7 @@ import java.net.*;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 
 
@@ -29,6 +30,8 @@ public class UDPClient extends javax.swing.JFrame {
         drawCard.setVisible(false);
         endGame.setVisible(false);
         gameRules.setVisible(false);
+        setExtendedState(JFrame.MAXIMIZED_BOTH); 
+
         
     }
     

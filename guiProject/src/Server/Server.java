@@ -2,21 +2,19 @@ package Server;
 import java.io.*;
 import java.net.*;
 import java.util.*;
-class UDPServer {
+class Server {
       public static DatagramSocket serverSocket;
       public static DatagramPacket receivePacket;
       public static Game jogo;
       public static Question a;
       public static Scanner scanner;
       
-      
-      
       public static void newGame() throws FileNotFoundException, IOException {
           
           if (scanner.nextLine().equals("true"))jogo = new Game(true);
           else jogo = new Game(false);
 
-          jogo.questions();
+          jogo.loadQuestions();
 
       } 
       
@@ -41,30 +39,6 @@ class UDPServer {
             sendPacket(resultado + "\n" + jogo.getPlayer1Points() + "\n" + jogo.getPlayer1Fire() + "\n" );
       }
       
-      public static void main(String args[])  throws IOException {
-          
-           System.out.println("Server");
-           serverSocket = new DatagramSocket(3333);
-           
-           
-           while(true) {
-                scanner = new Scanner(receivePacket());  
-                String text = scanner.nextLine();
-
-                 switch (text) {
-                     case "01": newGame();
-                         break;
-
-                     case "02": drawCard();
-                         break;
-
-                     case "03": checkAnswer();
-                         break;
-                 }
-            }
-                  
-      }
-
       public static String receivePacket() throws IOException {
             //cria array que vai ser recebido
             byte[] dataComing = new byte[1024];
@@ -110,4 +84,30 @@ class UDPServer {
 
             
       }
+
+
+
+      public static void main(String args[])  throws IOException {
+          
+            System.out.println("Server");
+            serverSocket = new DatagramSocket(3333);
+            
+            
+            while(true) {
+                 scanner = new Scanner(receivePacket());  
+                 String text = scanner.nextLine();
+ 
+                  switch (text) {
+                      case "01": newGame();
+                          break;
+ 
+                      case "02": drawCard();
+                          break;
+ 
+                      case "03": checkAnswer();
+                          break;
+                  }
+             }
+                   
+       }
 }

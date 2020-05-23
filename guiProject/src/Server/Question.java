@@ -16,7 +16,7 @@ public class Question {
         this.answer3 = answer3;
         this.rightAnswer = rightAnswer;
     }
-    public boolean validateQuestion(int userAnswer) {
+    public boolean validateAnswer(int userAnswer) {
         return (userAnswer==rightAnswer);
     }
 

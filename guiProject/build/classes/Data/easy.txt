@@ -1,0 +1,45 @@
+Qual o intervalo o primeiro byte de um endereço pertence, para ser de classe C?
+a) 0 - 127
+b) 192-233
+c) 128-191
+1
+Qual a máscara padrão de um endereço de classe B?
+a) 255.255.255.0
+b) 255.0.0.0
+c) 255.255.0.0
+2
+Se um roteador necessitar de quatro sub-redes (2^2), o byte de host necessitará de quantos bits em 1?
+a) 2 - 192
+b) 1 - 128
+c) 3 - 224
+0
+Qual protocolo de transporte é orientado a conexão?
+a) TCP
+b) SCTP
+c) UDP
+0
+São protocolos de correio eletrônico?
+a) TCP, UDP 
+b) SMTP, POP e IMAP
+c) SFTP, FTP e DNS
+1
+Para serviços ao vivo, como lives, qual protocolo de transporte é utilizado?
+a) TCP
+b) SMTP
+c) UDP
+2
+O DNS serve para: 
+a) Converter nome de máquinas para seu endereço IP.
+b) Fornecer endereços IP temporários. 
+c) Permitir o reuso de endereços IP.
+0
+A mensagem HTTP post serve para que?
+a) Obter um recurso
+b) Criar um recurso
+c) Remover um recurso
+1
+O protocolo HTTPS é a implementação do protocolo HTTP...
+a) ...sobre uma camada adicional de segurança que utiliza o protocolo SSL
+b) ...atualizado para ser tão seguro quanto o HTTP
+c) ...levando em consideração o novo ipv6
+0

@@ -5,12 +5,10 @@
  */
 package Client;
 
-import java.io.*;
 import java.net.*;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 
@@ -19,12 +17,12 @@ import javax.swing.JOptionPane;
  *
  * @author joaof
  */
-public class UDPClient extends javax.swing.JFrame {
+public class Client extends javax.swing.JFrame {
 
     public static DatagramSocket clientSocket;
     
     
-    public UDPClient() throws SocketException {
+    public Client() throws SocketException {
         initComponents();
         setLocationRelativeTo(null);
       
@@ -503,8 +501,7 @@ public class UDPClient extends javax.swing.JFrame {
 
 
             String result = scanner.nextLine();
-            System.out.println(result);
-
+        
             if (result.equals("true")) {
                 resultMessage.setText("Parabéns! Você Acertou");
             }
@@ -648,10 +645,6 @@ public class UDPClient extends javax.swing.JFrame {
     private javax.swing.JButton back;
     private javax.swing.ButtonGroup difficulty;
     private javax.swing.JButton draw;
-    private javax.swing.JButton draw1;
-    private javax.swing.JButton draw2;
-    private javax.swing.JPanel drawCard1;
-    private javax.swing.JPanel drawCard2;
     private javax.swing.JPanel drawCardItem;
     private javax.swing.JPanel drawCardScreen;
     private javax.swing.JRadioButton easy;
@@ -674,27 +667,17 @@ public class UDPClient extends javax.swing.JFrame {
     private javax.swing.JLabel pergunta;
     private javax.swing.JPanel pointsItem;
     private javax.swing.JLabel pointsVariable;
-    private javax.swing.JLabel pointsVariable1;
-    private javax.swing.JLabel pointsVariable2;
     private javax.swing.JLabel pontsLabel;
     private javax.swing.JLabel pontsLabel1;
-    private javax.swing.JLabel pontsLabel2;
-    private javax.swing.JLabel pontsLabel3;
-    private javax.swing.JLabel pontsLabel4;
-    private javax.swing.JLabel pontsLabel5;
     private javax.swing.JPanel questionItem;
     private javax.swing.JRadioButton resposta1;
     private javax.swing.JRadioButton resposta2;
     private javax.swing.JRadioButton resposta3;
     private javax.swing.ButtonGroup respostas;
     private javax.swing.JLabel resultMessage;
-    private javax.swing.JLabel resultMessage1;
-    private javax.swing.JLabel resultMessage2;
     private javax.swing.JButton rules1;
     private javax.swing.JButton send;
     private javax.swing.JLabel sequenceVariable;
-    private javax.swing.JLabel sequenceVariable1;
-    private javax.swing.JLabel sequenceVariable2;
     private javax.swing.JButton startGame1;
     // End of variables declaration//GEN-END:variables
 
@@ -709,9 +692,9 @@ public class UDPClient extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new UDPClient().setVisible(true);
+                    new Client().setVisible(true);
                 } catch (SocketException ex) {
-                    Logger.getLogger(UDPClient.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });     

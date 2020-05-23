@@ -57,9 +57,9 @@ public class Game {
 
     }
 
-    public void questions() throws FileNotFoundException {
-            String name = "easy.txt" ;
-            if (difficulty) name = "hard.txt";
+    public void loadQuestions() throws FileNotFoundException {
+            String name = "src/Data/easy.txt" ;
+            if (difficulty) name = "src/Data/hard.txt";
 
 
             Scanner file = new Scanner(new File(name));

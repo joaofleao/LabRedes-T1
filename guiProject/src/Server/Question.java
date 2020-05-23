@@ -1,4 +1,4 @@
-package main;
+package Server;
 public class Question {
 
     private int questionNumber;

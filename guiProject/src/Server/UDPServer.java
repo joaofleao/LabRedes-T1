@@ -1,4 +1,4 @@
-package main;
+package Server;
 import java.io.*;
 import java.net.*;
 import java.util.*;
@@ -7,12 +7,15 @@ class UDPServer {
       public static DatagramPacket receivePacket;
       public static Game jogo;
       public static Question a;
+      public static Scanner scanner;
       
       
       
       public static void newGame() throws FileNotFoundException, IOException {
-          jogo = new Game(true);
           
+          if (scanner.nextLine().equals("true"))jogo = new Game(true);
+          else jogo = new Game(false);
+
           jogo.questions();
 
       } 
@@ -28,10 +31,8 @@ class UDPServer {
 
             }
           
-          
-          
       }
-      public static void checkAnswer(Scanner scanner) throws IOException {
+      public static void checkAnswer() throws IOException {
             
             int resposta = Character.getNumericValue(scanner.nextLine().charAt(0));
 
@@ -47,7 +48,7 @@ class UDPServer {
            
            
            while(true) {
-                Scanner scanner = new Scanner(receivePacket());  
+                scanner = new Scanner(receivePacket());  
                 String text = scanner.nextLine();
 
                  switch (text) {
@@ -57,7 +58,7 @@ class UDPServer {
                      case "02": drawCard();
                          break;
 
-                     case "03": checkAnswer(scanner);
+                     case "03": checkAnswer();
                          break;
                  }
             }

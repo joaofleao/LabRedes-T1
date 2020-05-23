@@ -1,4 +1,4 @@
-package main;
+package Server;
 
 import java.io.*;
 import java.util.*;
@@ -58,8 +58,11 @@ public class Game {
     }
 
     public void questions() throws FileNotFoundException {
+            String name = "easy.txt" ;
+            if (difficulty) name = "hard.txt";
 
-            Scanner file = new Scanner(new File("test.txt"));
+
+            Scanner file = new Scanner(new File(name));
             
             for (int i = 0; file.hasNextLine(); i++) {
                 String pergunta = file.nextLine();

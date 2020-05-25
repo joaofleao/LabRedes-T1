@@ -5,8 +5,6 @@ import java.util.*;
 
 public class Game { 
 
-    
-    private boolean difficulty;
     private List<Question> perguntas;
 
     private int player1Points;
@@ -14,8 +12,7 @@ public class Game {
     private int player1Fire;
 
 
-    public Game(boolean difficulty) {
-        this.difficulty = difficulty;
+    public Game() {
         perguntas = new ArrayList<Question>();
         player1Questions = new ArrayList<Integer>();
         player1Points = 0;
@@ -57,9 +54,9 @@ public class Game {
 
     }
 
-    public void loadQuestions() throws FileNotFoundException {
+    public void loadQuestions(String difficulty) throws FileNotFoundException {
             String name = "src/Data/easy.txt" ;
-            if (difficulty) name = "src/Data/hard.txt";
+            if (difficulty.equals("true")) name = "src/Data/hard.txt";
 
 
             Scanner file = new Scanner(new File(name));

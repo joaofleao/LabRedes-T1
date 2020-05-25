@@ -5,13 +5,12 @@
  */
 package Client;
 
+import java.io.IOException;
 import java.net.*;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-
-
 
 /**
  *
@@ -20,20 +19,20 @@ import javax.swing.JOptionPane;
 public class Client extends javax.swing.JFrame {
 
     public static DatagramSocket clientSocket;
-    
-    
+
     public Client() throws SocketException {
         initComponents();
         setLocationRelativeTo(null);
-      
+
         drawCardScreen.setVisible(false);
         endGameScreen.setVisible(false);
         gameRulesScreen.setVisible(false);
         setResizable(false);
-             
+
     }
-    
+
     @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -51,7 +50,7 @@ public class Client extends javax.swing.JFrame {
         pointsVariable = new javax.swing.JLabel();
         pontsLabel1 = new javax.swing.JLabel();
         sequenceVariable = new javax.swing.JLabel();
-        finishGame = new javax.swing.JButton();
+        endGameButton = new javax.swing.JButton();
         drawCardItem = new javax.swing.JPanel();
         draw = new javax.swing.JButton();
         resultMessage = new javax.swing.JLabel();
@@ -143,10 +142,10 @@ public class Client extends javax.swing.JFrame {
 
         sequenceVariable.setText("0");
 
-        finishGame.setText("Finalizar Jogo");
-        finishGame.addActionListener(new java.awt.event.ActionListener() {
+        endGameButton.setText(" FInalizar Server e Jogo");
+        endGameButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                finishGameActionPerformed(evt);
+                endGameButtonActionPerformed(evt);
             }
         });
 
@@ -154,41 +153,37 @@ public class Client extends javax.swing.JFrame {
         pointsItem.setLayout(pointsItemLayout);
         pointsItemLayout.setHorizontalGroup(
             pointsItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pointsItemLayout.createSequentialGroup()
-                .addContainerGap(617, Short.MAX_VALUE)
-                .addComponent(finishGame)
-                .addGap(25, 25, 25))
-            .addGroup(pointsItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pointsItemLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(pointsItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(pointsItemLayout.createSequentialGroup()
-                            .addComponent(pontsLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(sequenceVariable))
-                        .addGroup(pointsItemLayout.createSequentialGroup()
-                            .addComponent(pontsLabel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(pointsVariable)))
-                    .addContainerGap(603, Short.MAX_VALUE)))
+            .addGroup(pointsItemLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pointsItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pointsItemLayout.createSequentialGroup()
+                        .addComponent(pontsLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sequenceVariable))
+                    .addGroup(pointsItemLayout.createSequentialGroup()
+                        .addComponent(pontsLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pointsVariable)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 435, Short.MAX_VALUE)
+                .addComponent(endGameButton)
+                .addContainerGap())
         );
         pointsItemLayout.setVerticalGroup(
             pointsItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pointsItemLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(finishGame)
-                .addContainerGap(18, Short.MAX_VALUE))
-            .addGroup(pointsItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pointsItemLayout.createSequentialGroup()
-                    .addGap(13, 13, 13)
-                    .addGroup(pointsItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(pontsLabel)
-                        .addComponent(pointsVariable))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(pointsItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(pontsLabel1)
-                        .addComponent(sequenceVariable))
-                    .addContainerGap(13, Short.MAX_VALUE)))
+                .addGap(13, 13, 13)
+                .addGroup(pointsItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pontsLabel)
+                    .addComponent(pointsVariable))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pointsItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pontsLabel1)
+                    .addComponent(sequenceVariable))
+                .addContainerGap(13, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pointsItemLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(endGameButton)
+                .addGap(15, 15, 15))
         );
 
         draw.setText("Sortear Pergunta");
@@ -470,21 +465,27 @@ public class Client extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
-        String escolha = "";
-        
-        if (!resposta1.isSelected() && !resposta2.isSelected() && !resposta3.isSelected()){
-            JOptionPane.showMessageDialog(null, "Selecione uma reposta", "Erro", JOptionPane.ERROR_MESSAGE);
+    private void endGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endGameButtonActionPerformed
+        try {
+            sendData("00\n", InetAddress.getByName("localhost"));
+            finishGameActionPerformed(null);
+            
+        } catch (Exception e) {
+            
         }
-        else {
+    }//GEN-LAST:event_endGameButtonActionPerformed
+
+    private void sendActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_sendActionPerformed
+        String escolha = "";
+
+        if (!resposta1.isSelected() && !resposta2.isSelected() && !resposta3.isSelected()) {
+            JOptionPane.showMessageDialog(null, "Selecione uma reposta", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else {
             if (resposta1.isSelected()) {
                 escolha = "0";
-            }
-            else if (resposta2.isSelected()) {
+            } else if (resposta2.isSelected()) {
                 escolha = "1";
-            }
-            else if (resposta3.isSelected()) {
+            } else if (resposta3.isSelected()) {
                 escolha = "2";
             }
             respostas.clearSelection();
@@ -492,153 +493,151 @@ public class Client extends javax.swing.JFrame {
             String dataReceived = "";
 
             try {
-                sendData(("03\n" + escolha + "\n"), InetAddress.getByName("localhost"));
-                dataReceived = receiveData(clientSocket);
+                dataReceived = sendData(("03\n" + escolha + "\n"), InetAddress.getByName("localhost"));
+                
+            } catch (Exception e) {
             }
-            catch (Exception e) {}
 
             Scanner scanner = new Scanner(dataReceived);
 
-
             String result = scanner.nextLine();
-        
+
             if (result.equals("true")) {
                 resultMessage.setText("Parabéns! Você Acertou");
-            }
-            else {
+            } else {
                 resultMessage.setText("Que Pena! Você Errou");
             }
-
 
             pointsVariable.setText(scanner.nextLine());
             sequenceVariable.setText(scanner.nextLine());
 
-
             questionItem.setVisible(false);
             drawCardItem.setVisible(true);
         }
-        
-    }//GEN-LAST:event_sendActionPerformed
 
-    private void resposta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resposta1ActionPerformed
+    }// GEN-LAST:event_sendActionPerformed
+
+    private void resposta1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_resposta1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_resposta1ActionPerformed
+    }// GEN-LAST:event_resposta1ActionPerformed
 
-    private void goBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goBackActionPerformed
-    endGameScreen.setVisible(false);
-    menuScreen.setVisible(true);
-        
-        
-    }//GEN-LAST:event_goBackActionPerformed
+    private void goBackActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_goBackActionPerformed
+        endGameScreen.setVisible(false);
+        menuScreen.setVisible(true);
 
-    private void drawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_drawActionPerformed
+    }// GEN-LAST:event_goBackActionPerformed
+
+    private void drawActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_drawActionPerformed
         drawCardItem.setVisible(false);
-        
-        
+
         String sentence = "";
         try {
-            sendData("02\n", InetAddress.getByName("localhost"));
-            sentence = receiveData(clientSocket);
+            sentence = sendData("02\n", InetAddress.getByName("localhost"));
+        } catch (Exception e) {
         }
-        catch (Exception e) {}
 
         Scanner scanner = new Scanner(sentence);
-        
+        System.out.println("fora");
+
         sentence = scanner.nextLine();
-        if (sentence.equals("gameOver")){
-            finishGameActionPerformed(null);           
-        }else {
+        if (sentence.equals("gameOver")) {
+            System.out.println("dentro");
+            finishGameActionPerformed(null);
+        } else {
             questionItem.setVisible(true);
+            System.out.println(sentence);
             pergunta.setText(sentence);
             resposta1.setText(scanner.nextLine());
             resposta2.setText(scanner.nextLine());
             resposta3.setText(scanner.nextLine());
         }
-        
-       
-    }//GEN-LAST:event_drawActionPerformed
 
-    private void startGame1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startGame1ActionPerformed
+    }// GEN-LAST:event_drawActionPerformed
+
+    private void startGame1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_startGame1ActionPerformed
         boolean choice = false;
-        
-        if (!easy.isSelected() && !hard.isSelected()){
+
+        if (!easy.isSelected() && !hard.isSelected()) {
             JOptionPane.showMessageDialog(null, "Selecione uma reposta", "Erro", JOptionPane.ERROR_MESSAGE);
-        }
-        else {
+        } else {
             if (easy.isSelected()) {
                 choice = false;
-            }
-            else if (hard.isSelected()) {
+            } else if (hard.isSelected()) {
                 choice = true;
             }
-            
+
             difficulty.clearSelection();
 
             resultMessage.setText(" ");
             pointsVariable.setText("0");
             sequenceVariable.setText("0");
-            
+
             questionItem.setVisible(false);
             menuScreen.setVisible(false);
             drawCardScreen.setVisible(true);
             drawCardItem.setVisible(true);
-           
+
             try {
                 sendData("01\n" + choice + "\n", InetAddress.getByName("localhost"));
+                System.out.println("001");
+            } catch (Exception e) {
             }
-            catch (Exception e) {}
         }
-        
-    }//GEN-LAST:event_startGame1ActionPerformed
 
-    private void rules1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rules1ActionPerformed
+    }// GEN-LAST:event_startGame1ActionPerformed
+
+    private void rules1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_rules1ActionPerformed
         menuScreen.setVisible(false);
         gameRulesScreen.setVisible(true);
-    }//GEN-LAST:event_rules1ActionPerformed
+    }// GEN-LAST:event_rules1ActionPerformed
 
-    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_backActionPerformed
         menuScreen.setVisible(true);
         gameRulesScreen.setVisible(false);
-    }//GEN-LAST:event_backActionPerformed
+    }// GEN-LAST:event_backActionPerformed
 
-    private void easyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_easyActionPerformed
+    private void easyActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_easyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_easyActionPerformed
+    }// GEN-LAST:event_easyActionPerformed
 
-    private void finishGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishGameActionPerformed
+    private void finishGameActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_finishGameActionPerformed
         drawCardScreen.setVisible(false);
         endGameScreen.setVisible(true);
         finalScore.setText(pointsVariable.getText());
-    }//GEN-LAST:event_finishGameActionPerformed
-   
-    
- 
-    private static String receiveData(DatagramSocket clientSocket) throws Exception{
-      //criar array de 1024
-      byte[] dataComing = new byte[1024];
+    }// GEN-LAST:event_finishGameActionPerformed
 
-      // declara o pacote a ser recebido
-      DatagramPacket receivePacket = new DatagramPacket(dataComing, dataComing.length);
+  
 
-      // recebe o pacote do servidor
-      clientSocket.receive(receivePacket);
-
-      //retorna o texto recebido string com texto
-      return new String (receivePacket.getData());
-
-   }
    
    
-   private static boolean sendData(String text, InetAddress IPAddress) throws Exception {
-         //criar array de 1024
+   private String sendData(String text, InetAddress IPAddress) throws Exception {
          byte[] dataGoing = text.getBytes();
 
-         // cria pacote com o dado, o endereço do server e porta do servidor
          DatagramPacket sendPacket = new DatagramPacket(dataGoing, dataGoing.length, IPAddress, 3333);
+        
+         byte[] dataComing = new byte[1024];
+         DatagramPacket teste = new DatagramPacket(dataComing, dataComing.length);
          
-         clientSocket.send(sendPacket);
+         for (int i = 50; i>0; i--) {
+            try {
+                  clientSocket.send(sendPacket);
+                  clientSocket.receive(teste);
 
-         return true;
+                  break;
+            } catch (SocketTimeoutException e) {
+
+            }
+            if (i ==1) {
+                JOptionPane.showMessageDialog(null, "Verifique sua conexão e tente novamente", "Erro", JOptionPane.ERROR_MESSAGE);
+                
+                return(sendData(text, InetAddress.getByName("localhost")));
+            
+            }
+        }
+        
+        return new String (teste.getData());
+
+
    }
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -648,9 +647,9 @@ public class Client extends javax.swing.JFrame {
     private javax.swing.JPanel drawCardItem;
     private javax.swing.JPanel drawCardScreen;
     private javax.swing.JRadioButton easy;
+    private javax.swing.JButton endGameButton;
     private javax.swing.JPanel endGameScreen;
     private javax.swing.JLabel finalScore;
-    private javax.swing.JButton finishGame;
     private javax.swing.JPanel gameRulesScreen;
     private javax.swing.JButton goBack;
     private javax.swing.JRadioButton hard;
@@ -686,7 +685,8 @@ public class Client extends javax.swing.JFrame {
      * 
      */
     public static void main(String args[]) throws Exception{
-        System.out.println("Client");
+        System.out.println("Client Novo");
+        
           
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -698,8 +698,8 @@ public class Client extends javax.swing.JFrame {
             }
         });     
 
-        clientSocket = new DatagramSocket();     
-        
+        clientSocket = new DatagramSocket(4444);     
+        clientSocket.setSoTimeout(100);
     }
 
 }

@@ -375,11 +375,11 @@ public class Client extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Regra 1:");
+        jLabel5.setText("Regra 1: Este é um jogo de perguntas e respostas, responda-as para ganhar pontos. Também é possível definir a dificuldade do jogo entre fácil e difícil.");
 
-        jLabel6.setText("Regra 3:");
+        jLabel6.setText("Regra 3: O jogo é feito para uma pessoa jogar a fim de consolidar os conhecimento de laboratório de redes.");
 
-        jLabel7.setText("Regra 2:");
+        jLabel7.setText("Regra 2: Este jogo possui uma funcionalidade que a cada questão acertada em sequência um modificador é adicionado, e a cada acerto um ponto é adicionado ao mesmo, gerando uma pontuação final maior.");
 
         javax.swing.GroupLayout gameRulesScreenLayout = new javax.swing.GroupLayout(gameRulesScreen);
         gameRulesScreen.setLayout(gameRulesScreenLayout);

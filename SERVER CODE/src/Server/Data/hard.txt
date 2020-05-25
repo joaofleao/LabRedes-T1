@@ -1,0 +1,45 @@
+Qual das alternativas pertence as soluções de loops de roteamento?
+a) Bandwidth.
+b) Split Horizon.
+c) MTU.
+1
+O roteamento dinâmico permite...
+a) … escolha do melhor caminho para as redes de destino.
+b) … construir tabelas estáticas.
+c) … que as rotas não se alteram de acordo com alterações da topologia da rede.
+0
+Qual desses pertence ao conjunto de métricas do vetor de distância?
+a) gateway, atraso e número de hops.
+b) largura de banda, carga e endereço IP.
+c) número de hops, carga e atraso.
+2
+O protocolo ICMP serve para...
+a) … enviar mensagens de correio eletrônico.
+b) … enviar mensagens de erro e controle.
+c) … enviar hipertexto.
+1
+O protocolo TCP possui qual tipo de comunicação?
+a) full-duplex.
+b) half-duplex.
+b) simplex.
+0
+São características comuns do protocolo NAT:
+a) Alocação transparente de endereços.
+b) Obtenção de configuração IP de forma dinâmica.
+c) Fornecer endereços IP temporários.
+0
+Qual o intervalo que o primeiro byte de um endereço pertence, para ser de classe C?
+a) 0 - 127
+b) 192-233
+c) 128-191
+1
+_______ criam uma série de canais exclusivos em que os dados do computador de origem são recebidos somente pela máquina de destino.
+a) Switches
+b) Roteadores
+c) Hubs
+0
+Qual a ordem do modelo de referência OSI, na ordem decrescente?
+a) Aplicação -> Apresentação -> Sessão -> Transporte -> Rede -> Enlace -> Física.
+b) Aplicação -> Física -> Sessão -> Rede-> Transporte-> Enlace -> Apresentação.
+c) Transporte-> Apresentação -> Sessão -> Aplicação-> Rede -> Física-> Enlace.
+0
